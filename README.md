@@ -28,6 +28,9 @@ export SHELL_MOMMYS_LITTLE="discord kitten/kitty"
 export SHELL_MOMMYS_EMOTES="🤤/💕/🥺/💋"
 ```
 
+You can also change `affirmations.json` file to un-degenerate this piece of software or make it worse by changing default affirmations. 
+I'm not the one to judge.
+
 ## Known bugs / limitations:
 - Crashes whenever command was piped ;
 - Is not compatible with Bash aliases (open for suggestions how to fix this) ;
