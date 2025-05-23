@@ -1,24 +1,3 @@
-# mommy - affirmations in your terminal 💞
-
-Clearly inspired by by [cargo-mommy](<https://github.com/Gankra/cargo-mommy>) and original (in Bash) [shell-mommy](<https://github.com/sudofox/shell-mommy>).
-
-After using Bash  implementation for a bit, I've decided to try writing my own implementation in Rust for the sake of learning new things. ~~In the process I think I got too far lost in the cult of Rust.~~
-
-## How to build:
-- Get [Rust](https://rustup.rs/)
-- `git clone https://github.com/sleepymincy/mommy`
-- `cd mommy`
-- `cargo build` or `cargo build -r` for release version
-
-## Easy install:
-... TODO: fuck really hard with crates.io~ <3
-
-## Known bugs / limitations:
-- Crashes whenever command was piped ;
-- Is not compatible with Bash aliases (open for suggestions how to fix this) ;
-- Probably way more. I'm stupid :3
-
-## License information:
 This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or
