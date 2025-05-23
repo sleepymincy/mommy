@@ -1,6 +1,6 @@
 # mommy - affirmations in your terminal 💞
 
-Clearly inspired by by [cargo-mommy](<https://github.com/Gankra/cargo-mommy>) and original (in Bash) [shell-mommy](<https://github.com/sudofox/shell-mommy>).
+Clearly inspired by by [Gankra/cargo-mommy](<https://github.com/Gankra/cargo-mommy>) and original (in Bash) [sudofox/shell-mommy](<https://github.com/sudofox/shell-mommy>).
 
 After using Bash  implementation for a bit, I've decided to try writing my own implementation in Rust for the sake of learning new things. ~~In the process I think I got too far lost in the cult of Rust.~~
 
@@ -8,7 +8,8 @@ After using Bash  implementation for a bit, I've decided to try writing my own i
 - Get [Rust](https://rustup.rs/)
 - `git clone https://github.com/sleepymincy/mommy`
 - `cd mommy`
-- `cargo build` or `cargo build -r` for release version
+- `cargo build` or `cargo build -r` for release version (recommended)
+- Compiled binary will be in `./target/release/`
 
 ## Easy install:
 ... TODO: fuck really hard with crates.io~ <3
@@ -19,21 +20,39 @@ Available environment variables:
 - `SHELL_MOMMYS_LITTLE` - to set the petnames mommy is using towards u
 - `SHELL_MOMMYS_ROLES` - to change mommy to daddy or whatever else
 - `SHELL_MOMMYS_PRONOUNS` - to change mommy's pronouns
+- `SHELL_MOMMYS_COLOR` - to change text color
+- `SHELL_MOMMYS_STYLE` - to change text style
+- `SHELL_MOMMYS_COLOR_RGB` - to set custom rgb color for the text
+- `SHELL_MOMMYS_ALIASES` - provide path to your aliases file for mommy to source
 
-You can all add this to your `.bashrc` (or any other rc file) to customize it system wide, for example:
+You can either specify environment variables every time you run mommy:
+```ansi
+you@archbtw:~$ SHELL_MOMMYS_COLOR="blue" SHELL_MOMMYS_STYLE="bold" mommy ls -l
+drwxr-xr-x - you 20 April 04:20 📁 dir1
+drwxr-xr-x - you 20 April 04:20 📁 dir2
+drwxr-xr-x - you 20 April 04:20 📁 dir3
+you're doing so well~! 💓 <- will be blue
 ```
+
+Or all add this to your `.bashrc` (or any other rc file) to customize it user wide, for example:
+```sh
 export SHELL_MOMMYS_PRONOUNS="his"
 export SHELL_MOMMYS_ROLES="daddy"
 export SHELL_MOMMYS_LITTLE="discord kitten/kitty"
 export SHELL_MOMMYS_EMOTES="🤤/💕/🥺/💋"
+export SHELL_MOMMYS_COLOR="blue" # Picking more than one will radomly rotate between colors.
+export SHELL_MOMMYS_STYLE="bold,italic/bold" # Will be randomly rotated between bold italic and normal bold styles.
+export SHELL_MOMMYS_COLOR_RGB="255,164,243/255,50,50" # Will be randomly rotated between lilac and red colors in this example. Note, that this setting will overwrite SHELL_MOMMYS_COLOR !!!
+export SHELL_MOMMYS_ALIASES="$HOME/.config/aliases"
 ```
 
 You can also change `affirmations.json` file to un-degenerate this piece of software or make it worse by changing default affirmations. 
 I'm not the one to judge.
 
 ## Known bugs / limitations:
-- Crashes whenever command was piped ;
-- Is not compatible with Bash aliases (open for suggestions how to fix this) ;
+- ~~Crashes whenever command was piped ;~~ FIXED IN THE LATEST RELEASE
+- ~~Is not compatible with Bash aliases (open for suggestions how to fix this) ;~~ FIXED IN THE LATEST RELEASE
+- Does not work with `cd` ;
 - Probably way more. I'm stupid :3
 
 ## License information:

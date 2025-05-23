@@ -2,7 +2,7 @@
 name = "shell-mommy"
 version = "0.1.0"
 authors = ["Mincy Queen <sleepymincy@proton.me>"]
-edition = "2025"
+edition = "2024"
 description = "Affirmations in your terminal!"
 license = "Unlicense license"
 repository = "https://github.com/sleepymincy/mommy"
@@ -12,6 +12,3 @@ fastrand = "2.3.0"
 ansi_term = "0.12"
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-
-[target.x86_64-pc-windows-gnu]
-linker = "mingw-w64-gcc"
