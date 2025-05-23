@@ -13,6 +13,21 @@ After using Bash  implementation for a bit, I've decided to try writing my own i
 ## Easy install:
 ... TODO: fuck really hard with crates.io~ <3
 
+## Configuration:
+Available environment variables: 
+- `SHELL_MOMMYS_EMOTES` - to set the emotes to anything u want
+- `SHELL_MOMMYS_LITTLE` - to set the petnames mommy is using towards u
+- `SHELL_MOMMYS_ROLES` - to change mommy to daddy or whatever else
+- `SHELL_MOMMYS_PRONOUNS` - to change mommy's pronouns
+
+You can all add this to your `.bashrc` (or any other rc file) to customize it system wide, for example:
+```
+export SHELL_MOMMYS_PRONOUNS="his"
+export SHELL_MOMMYS_ROLES="daddy"
+export SHELL_MOMMYS_LITTLE="discord kitten/kitty"
+export SHELL_MOMMYS_EMOTES="🤤/💕/🥺/💋"
+```
+
 ## Known bugs / limitations:
 - Crashes whenever command was piped ;
 - Is not compatible with Bash aliases (open for suggestions how to fix this) ;
