@@ -50,8 +50,8 @@ You can also change `affirmations.json` file to un-degenerate this piece of soft
 I'm not the one to judge.
 
 ## Known bugs / limitations:
-- FIXED ~~Crashes whenever command was piped ;~~ FIXED
-- FIXED ~~Is not compatible with Bash aliases (open for suggestions how to fix this) ;~~
+- FIXED: ~~Crashes whenever command was piped ;~~
+- FIXED: ~~Is not compatible with Bash aliases (open for suggestions how to fix this) ;~~
 - Does not work with `cd` ;
 - Probably way more. I'm stupid :3
 
