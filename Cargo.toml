@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Mincy Queen <sleepymincy@proton.me>"]
 edition = "2025"
 description = "Affirmations in your terminal!"
-license = "MIT"
+license = "Unlicense license"
 repository = "https://github.com/sleepymincy/mommy"
 
 [dependencies]
