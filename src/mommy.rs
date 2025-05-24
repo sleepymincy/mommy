@@ -1,7 +1,6 @@
 use std::env;
 use std::error::Error;
-use std::process::{Command, exit, ExitStatus};
-use std::os::unix::process::ExitStatusExt;
+use std::process::{Command, exit};
 use crate::config::load_config;
 use crate::affirmations::load_affirmations;
 use crate::utils::{fill_template, graceful_print};
@@ -16,10 +15,8 @@ pub fn mommy() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 { eprintln!("Usage: {} {}", args[0], if config.needy { "<exit_code>" } else { "<command> [args ...]" }); exit(1); }
 
-    // TODO: Looks a lil messy, do something about this.
-    let status: Result<ExitStatus, Box<dyn Error>> = if config.needy {
-        let exit_code: i32 = args[1].parse()?;
-        Ok(ExitStatus::from_raw(exit_code))
+    let exit_code: i32 = if config.needy {
+        args[1].parse()?
     } else {
         let raw_command = args[1..].join(" ");
         let run_command = if let Some(ref aliases_path) = config.aliases {
@@ -32,22 +29,19 @@ pub fn mommy() -> Result<(), Box<dyn Error>> {
             .arg("-c")
             .arg(&run_command)
             .spawn()
-            .and_then(|mut child| child.wait());
-        
-        status.map_err(|e| e.into())
+            .and_then(|mut child| child.wait())?;
+
+        status.code().unwrap_or(1)
     };
 
-    let (template, _affirmation_type) = match status {
-        Ok(exit_status) if exit_status.success() || exit_status.code() == Some(130) => {
-            let templates = if let Some(ref aff) = affirmations { &aff.positive } else { &default_positive };
-            let idx = fastrand::usize(..templates.len());
-            (templates[idx].as_str(), "positive")
-        },
-        _ => {
-            let templates = if let Some(ref aff) = affirmations { &aff.negative } else { &default_negative };
-            let idx = fastrand::usize(..templates.len());
-            (templates[idx].as_str(), "negative")
-        },
+    let (template, _affirmation_type) = if exit_code == 0 || exit_code == 130 {
+        let templates = if let Some(ref aff) = affirmations { &aff.positive } else { &default_positive };
+        let idx = fastrand::usize(..templates.len());
+        (templates[idx].as_str(), "positive")
+    } else {
+        let templates = if let Some(ref aff) = affirmations { &aff.negative } else { &default_negative };
+        let idx = fastrand::usize(..templates.len());
+        (templates[idx].as_str(), "negative")
     };
 
     let output = fill_template(template, &config);
