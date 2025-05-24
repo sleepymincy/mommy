@@ -1,5 +1,7 @@
 # mommy - affirmations in your terminal 💞
 
+![screenshot](https://github.com/sleepymincy/sleepymincy/blob/main/.gitfiles/repos/images/mommy.png)
+
 Clearly inspired by by [Gankra/cargo-mommy](<https://github.com/Gankra/cargo-mommy>) and original (in Bash) [sudofox/shell-mommy](<https://github.com/sudofox/shell-mommy>).
 
 After using Bash  implementation for a bit, I've decided to try writing my own implementation in Rust for the sake of learning new things. ~~In the process I think I got too far lost in the cult of Rust.~~
