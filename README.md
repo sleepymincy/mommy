@@ -26,6 +26,7 @@ Available environment variables:
 - `SHELL_MOMMYS_STYLE` - to change text style
 - `SHELL_MOMMYS_COLOR_RGB` - to set custom rgb color for the text
 - `SHELL_MOMMYS_ALIASES` - provide path to your aliases file for mommy to source
+- `SHELL_MOMMYS_NEEDY` - can be `1` or `0` / unset, decides if mommy is running at all times or not
 
 You can either specify environment variables every time you run mommy:
 ```ansi
@@ -33,7 +34,7 @@ you@archbtw:~$ SHELL_MOMMYS_COLOR="blue" SHELL_MOMMYS_STYLE="bold" mommy ls -l
 drwxr-xr-x - you 20 April 04:20 📁 dir1
 drwxr-xr-x - you 20 April 04:20 📁 dir2
 drwxr-xr-x - you 20 April 04:20 📁 dir3
-you're doing so well~! 💓 <- will be blue
+you're doing so well~! 💓 <- will be blue and bold
 ```
 
 Or all add this to your `.bashrc` (or any other rc file) to customize it user wide, for example:
@@ -46,16 +47,15 @@ export SHELL_MOMMYS_COLOR="blue" # Picking more than one will radomly rotate bet
 export SHELL_MOMMYS_STYLE="bold,italic/bold" # Will be randomly rotated between bold italic and normal bold styles.
 export SHELL_MOMMYS_COLOR_RGB="255,164,243/255,50,50" # Will be randomly rotated between lilac and red colors in this example. Note, that this setting will overwrite SHELL_MOMMYS_COLOR !!!
 export SHELL_MOMMYS_ALIASES="$HOME/.config/aliases"
+export SHELL_MOMMYS_NEEDY=1 # Will make mommy run ALWAYS.
 ```
 
 You can also change `affirmations.json` file to un-degenerate this piece of software or make it worse by changing default affirmations. 
 I'm not the one to judge.
 
 ## Known bugs / limitations:
-- FIXED: ~~Crashes whenever command was piped ;~~
-- FIXED: ~~Is not compatible with Bash aliases (open for suggestions how to fix this) ;~~
-- Does not work with `cd` ;
-- Probably way more. I'm stupid :3
+- FIXED (**if** mommy is running at all times): ~~Does not work with `cd` ;~~
+- No known ones, but I'm sure there are. Open an [issue](https://github.com/sleepymincy/mommy/issues/new) if you find one.
 
 ## License information:
 This is free and unencumbered software released into the public domain.

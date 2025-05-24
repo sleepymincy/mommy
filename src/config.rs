@@ -10,6 +10,7 @@ pub struct ConfigMommy {
     pub style: String,
     pub color_rgb: Option<String>,
     pub aliases: Option<String>,
+    pub needy: bool,
 }
 
 pub fn load_config() -> ConfigMommy {
@@ -21,9 +22,10 @@ pub fn load_config() -> ConfigMommy {
     let style       = env::var("SHELL_MOMMYS_STYLE").unwrap_or_else(|_| "bold".to_string());
     let color_rgb   = env::var("SHELL_MOMMYS_COLOR_RGB").ok();
     let aliases     = env::var("SHELL_MOMMYS_ALIASES").ok();
+    let needy       = env::var("SHELL_MOMMYS_NEEDY").map_or(false, |v| v == "1");
     // TODO: Add blocklist functionality for those who want to run mommy at all times.
-    //       Mainly because commands like cd are not executable with it, and others, 
-    //       like clear and exit, might not be desired to be executed with mommy.
+    //       Since mommy only reads the exit codes when SHELL_MOMMYS_GLOBAL_MODE is set to 1,
+    //       maybe blacklist should be handled on the Bash side?
 
     ConfigMommy {
         pronouns,
@@ -34,5 +36,6 @@ pub fn load_config() -> ConfigMommy {
         style,
         color_rgb,
         aliases,
+        needy,
     }
 }
