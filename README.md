@@ -51,8 +51,8 @@ export SHELL_MOMMYS_NEEDY=1 # Will make mommy run ALWAYS.
 ```
 
 When you set `SHELL_MOMMYS_NEEDY` variable to `1`, mommy will accept exit codes instead of commands as an argument. Examples: 
-- `sjdfhsdjkfhsdf; mommy $?` <- this will return exit code `127`, which will result in negative response from mommy
-- `ls; mommy $?` <- this will return exit code `0`, which will make mommy give a positive response
+- `sjdfhsdjkfhsdf; mommy $?` <- returns exit code `127`, which will result in negative response from mommy
+- `ls; mommy $?` <- returns exit code `0`, which will make mommy give a positive response
 
 To make this behavior consistent, you can add these to your relevant rc files:
 
