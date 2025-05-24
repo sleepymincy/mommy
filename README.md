@@ -50,6 +50,27 @@ export SHELL_MOMMYS_ALIASES="$HOME/.config/aliases"
 export SHELL_MOMMYS_NEEDY=1 # Will make mommy run ALWAYS.
 ```
 
+When you set `SHELL_MOMMYS_NEEDY` variable to `1`, mommy will accept exit codes instead of commands as an argument. Examples: 
+- `sjdfhsdjkfhsdf; mommy $?` <- this will return exit code `127`, which will result in negative response from mommy
+- `ls; mommy $?` <- this will return exit code `0`, which will make mommy give a positive response
+
+To make this behavior consistent, you can add these to your relevant rc files:
+
+```bash
+# ~/.bashrc
+export PROMPT_COMMAND="mommy \$?; $PROMPT_COMMAND"
+```
+
+```bash
+# ~/.zshrc
+precmd() { mommy $? }
+```
+
+```bash
+# Others (not tested)
+export PS1="\$(mommy \$?)$PS1"
+```
+
 You can also change `affirmations.json` file to un-degenerate this piece of software or make it worse by changing default affirmations. 
 I'm not the one to judge.
 
