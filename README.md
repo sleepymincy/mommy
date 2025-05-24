@@ -26,7 +26,7 @@ Available environment variables:
 - `SHELL_MOMMYS_STYLE` - to change text style
 - `SHELL_MOMMYS_COLOR_RGB` - to set custom rgb color for the text
 - `SHELL_MOMMYS_ALIASES` - provide path to your aliases file for mommy to source
-- `SHELL_MOMMYS_NEEDY` - can be `1` or `0` / unset, decides if mommy is running at all times or not
+- `SHELL_MOMMYS_NEEDY` - can be `1`, `0` or unset, decides if mommy is running at all times or only when u call her
 
 You can either specify environment variables every time you run mommy:
 ```ansi
@@ -55,7 +55,7 @@ I'm not the one to judge.
 
 ## Known bugs / limitations:
 - FIXED (**if** mommy is running at all times): ~~Does not work with `cd` ;~~
-- No known ones, but I'm sure there are. Open an [issue](https://github.com/sleepymincy/mommy/issues/new) if you find one.
+- No known ones, but I'm sure there are. Open up an [issue](https://github.com/sleepymincy/mommy/issues/new) if you find one.
 
 ## License information:
 This is free and unencumbered software released into the public domain.
