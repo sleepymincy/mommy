@@ -24,7 +24,7 @@ pub fn load_config() -> ConfigMommy {
     let aliases     = env::var("SHELL_MOMMYS_ALIASES").ok();
     let needy       = env::var("SHELL_MOMMYS_NEEDY").map_or(false, |v| v == "1");
     // TODO: Add blocklist functionality for those who want to run mommy at all times.
-    //       Since mommy only reads the exit codes when SHELL_MOMMYS_GLOBAL_MODE is set to 1,
+    //       Since mommy only reads the exit codes when SHELL_MOMMYS_NEEDY is set to 1,
     //       maybe blacklist should be handled on the Bash side?
 
     ConfigMommy {
