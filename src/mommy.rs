@@ -6,6 +6,13 @@ use crate::affirmations::load_affirmations;
 use crate::utils::{fill_template, graceful_print};
 use crate::color::random_style_pick;
 
+// https://en.wikipedia.org/wiki/Don't_repeat_yourself
+fn choose_template<'a>( json_template: Option<&'a Vec<String>>, default_template: &'a Vec<String> ) -> &'a str {
+    let templates = json_template.unwrap_or(default_template);
+    let idx = fastrand::usize(..templates.len());
+    templates[idx].as_str()
+}
+
 pub fn mommy() -> Result<(), Box<dyn Error>> {
     let config = load_config();
     let affirmations = load_affirmations();
@@ -18,6 +25,8 @@ pub fn mommy() -> Result<(), Box<dyn Error>> {
     let exit_code: i32 = if config.needy {
         args[1].parse()?
     } else {
+        // Might get rid of this altogether or make it a legacy feature, 
+        // now that we have SHELL_MOMMY_ONLY_NEGATIVE filter.
         let raw_command = args[1..].join(" ");
         let run_command = if let Some(ref aliases_path) = config.aliases {
             format!("shopt -s expand_aliases; source \"{}\"; eval {}", aliases_path, raw_command)
@@ -34,14 +43,10 @@ pub fn mommy() -> Result<(), Box<dyn Error>> {
         status.code().unwrap_or(1)
     };
 
-    let (template, _affirmation_type) = if exit_code == 0 || exit_code == 130 {
-        let templates = if let Some(ref aff) = affirmations { &aff.positive } else { &default_positive };
-        let idx = fastrand::usize(..templates.len());
-        (templates[idx].as_str(), "positive")
-    } else {
-        let templates = if let Some(ref aff) = affirmations { &aff.negative } else { &default_negative };
-        let idx = fastrand::usize(..templates.len());
-        (templates[idx].as_str(), "negative")
+    let (template, _affirmation_type) = match (exit_code == 0, config.only_negative) {
+        (true, false) => ( choose_template(affirmations.as_ref().map(|aff| &aff.positive), &default_positive), "positive" ),
+        (false, true) => ( choose_template(affirmations.as_ref().map(|aff| &aff.negative), &default_negative), "negative" ),
+        _ => return Ok(()),
     };
 
     let output = fill_template(template, &config);

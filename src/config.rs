@@ -11,18 +11,20 @@ pub struct ConfigMommy {
     pub color_rgb: Option<String>,
     pub aliases: Option<String>,
     pub needy: bool,
+    pub only_negative: bool,
 }
 
 pub fn load_config() -> ConfigMommy {
-    let pronouns    = env::var("SHELL_MOMMYS_PRONOUNS").unwrap_or_else(|_| "her".to_string());
-    let roles       = env::var("SHELL_MOMMYS_ROLES").unwrap_or_else(|_| "mommy".to_string());
-    let little      = env::var("SHELL_MOMMYS_LITTLE").unwrap_or_else(|_| "girl".to_string());
-    let emotes      = env::var("SHELL_MOMMYS_EMOTES").unwrap_or_else(|_| "💖/💗/💓/💞".to_string());
-    let color       = env::var("SHELL_MOMMYS_COLOR").unwrap_or_else(|_| "white".to_string());
-    let style       = env::var("SHELL_MOMMYS_STYLE").unwrap_or_else(|_| "bold".to_string());
-    let color_rgb   = env::var("SHELL_MOMMYS_COLOR_RGB").ok();
-    let aliases     = env::var("SHELL_MOMMYS_ALIASES").ok();
-    let needy       = env::var("SHELL_MOMMYS_NEEDY").map_or(false, |v| v == "1");
+    let pronouns        = env::var("SHELL_MOMMYS_PRONOUNS").unwrap_or_else(|_| "her".to_string());
+    let roles           = env::var("SHELL_MOMMYS_ROLES").unwrap_or_else(|_| "mommy".to_string());
+    let little          = env::var("SHELL_MOMMYS_LITTLE").unwrap_or_else(|_| "girl".to_string());
+    let emotes          = env::var("SHELL_MOMMYS_EMOTES").unwrap_or_else(|_| "💖/💗/💓/💞".to_string());
+    let color           = env::var("SHELL_MOMMYS_COLOR").unwrap_or_else(|_| "white".to_string());
+    let style           = env::var("SHELL_MOMMYS_STYLE").unwrap_or_else(|_| "bold".to_string());
+    let color_rgb       = env::var("SHELL_MOMMYS_COLOR_RGB").ok();
+    let aliases         = env::var("SHELL_MOMMYS_ALIASES").ok();
+    let needy           = env::var("SHELL_MOMMYS_NEEDY").map_or(false, |v| v == "1");
+    let only_negative   = env::var("SHELL_MOMMY_ONLY_NEGATIVE").map_or(false, |v| v == "1");
     // TODO: Add blocklist functionality for those who want to run mommy at all times.
     //       Since mommy only reads the exit codes when SHELL_MOMMYS_NEEDY is set to 1,
     //       maybe blacklist should be handled on the Bash side?
@@ -37,5 +39,6 @@ pub fn load_config() -> ConfigMommy {
         color_rgb,
         aliases,
         needy,
+        only_negative,
     }
 }

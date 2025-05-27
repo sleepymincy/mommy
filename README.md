@@ -26,7 +26,8 @@ Available environment variables:
 - `SHELL_MOMMYS_STYLE` - to change text style
 - `SHELL_MOMMYS_COLOR_RGB` - to set custom rgb color for the text
 - `SHELL_MOMMYS_ALIASES` - provide path to your aliases file for mommy to source
-- `SHELL_MOMMYS_NEEDY` - can be `1`, `0` or unset, decides if mommy is running at all times or only when u call her
+- `SHELL_MOMMYS_NEEDY` - can be `1`, or `0` (default), decides if mommy is running at all times or only when u call her
+- `SHELL_MOMMY_ONLY_NEGATIVE` - can be `1` or `0` (default), decides if mommy only talks when exit code is not 0
 
 You can either specify environment variables every time you run mommy:
 ```ansi
@@ -43,11 +44,12 @@ export SHELL_MOMMYS_PRONOUNS="his"
 export SHELL_MOMMYS_ROLES="daddy"
 export SHELL_MOMMYS_LITTLE="discord kitten/kitty"
 export SHELL_MOMMYS_EMOTES="🤤/💕/🥺/💋"
-export SHELL_MOMMYS_COLOR="blue" # Picking more than one will radomly rotate between colors.
-export SHELL_MOMMYS_STYLE="bold,italic/bold" # Will be randomly rotated between bold italic and normal bold styles.
+export SHELL_MOMMYS_COLOR="blue/red" # Will be randomly rotated between blue and red colors.
+export SHELL_MOMMYS_STYLE="bold,italic/bold" # Will be randomly rotated between bold italic style and just bold style.
 export SHELL_MOMMYS_COLOR_RGB="255,164,243/255,50,50" # Will be randomly rotated between lilac and red colors in this example. Note, that this setting will overwrite SHELL_MOMMYS_COLOR !!!
 export SHELL_MOMMYS_ALIASES="$HOME/.config/aliases"
 export SHELL_MOMMYS_NEEDY=1 # Will make mommy run ALWAYS.
+export SHELL_MOMMY_ONLY_NEGATIVE=1 # Will make mommy only print affirmations if exit code is not 0
 ```
 
 When you set `SHELL_MOMMYS_NEEDY` variable to `1`, mommy will accept exit codes instead of commands as an argument. Examples: 
