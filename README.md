@@ -6,8 +6,7 @@ Clearly inspired by by [Gankra/cargo-mommy](<https://github.com/Gankra/cargo-mom
 
 After using Bash  implementation for a bit, I've decided to try writing my own implementation in Rust for the sake of learning new things. ~~In the process I think I got too far lost in the cult of Rust.~~
 
-## Quick Links
-
+## Quick Links:
 - [How to build](#how-to-build)
 - [Easy install](#easy-install)
 - [Configuration](#configuration)
@@ -34,6 +33,7 @@ Available environment variables:
 - `SHELL_MOMMYS_STYLE` - to change text style
 - `SHELL_MOMMYS_COLOR_RGB` - to set custom rgb color for the text
 - `SHELL_MOMMYS_ALIASES` - provide path to your aliases file for mommy to source
+- `SHELL_MOMMYS_AFFIRMATIONS` - provide a path to a valid `.json` file, formatted exactly like [assets/affirmations.json](https://github.com/sleepymincy/mommy/blob/master/assets/affirmations.json), otherwise the code will fall back to built-in default affirmations
 - `SHELL_MOMMYS_NEEDY` - can be `1`, or `0` (default), decides if mommy is running at all times or only when u call her
 - `SHELL_MOMMY_ONLY_NEGATIVE` - can be `1` or `0` (default), decides if mommy only talks when exit code is not 0
 
@@ -56,6 +56,7 @@ export SHELL_MOMMYS_COLOR="blue/red" # Will be randomly rotated between blue and
 export SHELL_MOMMYS_STYLE="bold,italic/bold" # Will be randomly rotated between bold italic style and just bold style.
 export SHELL_MOMMYS_COLOR_RGB="255,164,243/255,50,50" # Will be randomly rotated between lilac and red colors in this example. Note, that this setting will overwrite SHELL_MOMMYS_COLOR !!!
 export SHELL_MOMMYS_ALIASES="$HOME/.config/aliases"
+export SHELL_MOMMYS_AFFIRMATIONS="$HOME/.config/affirmations.json"
 export SHELL_MOMMYS_NEEDY=1 # Will make mommy run ALWAYS.
 export SHELL_MOMMY_ONLY_NEGATIVE=1 # Will make mommy only print affirmations if exit code is not 0
 ```
@@ -81,11 +82,9 @@ precmd() { mommy $? }
 export PS1="\$(mommy \$?)$PS1"
 ```
 
-You can also change `affirmations.json` file to un-degenerate this piece of software or make it worse by changing default affirmations. 
-I'm not the one to judge.
+You can also change `affirmations.json` before building, or load your own with `SHELL_MOMMYS_AFFIRMATIONS` during runtime, to un-degenerate this piece of software or make it worse. I'm not the one to judge.
 
 ## Known bugs / limitations:
-- FIXED (**if** mommy is running at all times): ~~Does not work with `cd` ;~~
 - No known ones, but I'm sure there are. Open up an [issue](https://github.com/sleepymincy/mommy/issues/new) if you find one.
 
 ## License information:

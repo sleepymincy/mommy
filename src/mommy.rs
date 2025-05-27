@@ -2,8 +2,8 @@ use std::env;
 use std::error::Error;
 use std::process::{Command, exit};
 use crate::config::load_config;
-use crate::affirmations::load_affirmations;
 use crate::utils::{fill_template, graceful_print};
+use crate::affirmations::{load_affirmations, load_custom_affirmations, Affirmations};
 use crate::color::random_style_pick;
 
 // https://en.wikipedia.org/wiki/Don't_repeat_yourself
@@ -15,7 +15,7 @@ fn choose_template<'a>( json_template: Option<&'a Vec<String>>, default_template
 
 pub fn mommy() -> Result<(), Box<dyn Error>> {
     let config = load_config();
-    let affirmations = load_affirmations();
+    let affirmations: Option<Affirmations> = if let Some(ref path) = config.affirmations { load_custom_affirmations(path) } else { load_affirmations() };
     let default_positive: Vec<String> = vec![ "{roles} loves {pronouns} {little}~ {emotes}".to_string() ];
     let default_negative: Vec<String> = vec![ "{roles} truly believes you can do it, {little}~ {emotes}".to_string() ];
 
@@ -46,6 +46,7 @@ pub fn mommy() -> Result<(), Box<dyn Error>> {
     let (template, _affirmation_type) = match (exit_code == 0, config.only_negative) {
         (true, false) => ( choose_template(affirmations.as_ref().map(|aff| &aff.positive), &default_positive), "positive" ),
         (false, true) => ( choose_template(affirmations.as_ref().map(|aff| &aff.negative), &default_negative), "negative" ),
+        (false, false) => ( choose_template(affirmations.as_ref().map(|aff| &aff.negative), &default_negative), "negative" ), // Whoops forgot this
         _ => return Ok(()),
     };
 
