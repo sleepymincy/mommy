@@ -6,6 +6,14 @@ Clearly inspired by by [Gankra/cargo-mommy](<https://github.com/Gankra/cargo-mom
 
 After using Bash  implementation for a bit, I've decided to try writing my own implementation in Rust for the sake of learning new things. ~~In the process I think I got too far lost in the cult of Rust.~~
 
+## Quick Links
+
+- [How to build](#how-to-build)
+- [Easy install](#easy-install)
+- [Configuration](#configuration)
+- [Known bugs / limitations](#known-bugs--limitations)
+- [License information](#license-information)
+
 ## How to build:
 - Get [Rust](https://rustup.rs/)
 - `git clone https://github.com/sleepymincy/mommy`
