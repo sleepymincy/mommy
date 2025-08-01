@@ -1,6 +1,6 @@
 [package]
 name = "shell-mommy"
-version = "0.1.2a"
+version = "0.1.2"
 authors = ["Mincy Queen <sleepymincy@proton.me>"]
 edition = "2024"
 description = "Affirmations in your terminal!"
