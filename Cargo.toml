@@ -10,6 +10,9 @@ keywords = ["mommy", "silly", "shell", "cli"]
 categories = ["command-line-utilities"]
 readme = "README.md"
 
+[[bin]]
+name = "mommy"
+
 [dependencies]
 fastrand = "2.3.0"
 ansi_term = "0.12"
