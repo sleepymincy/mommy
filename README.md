@@ -35,7 +35,7 @@ Available environment variables:
 - `SHELL_MOMMYS_COLOR_RGB` - to set custom rgb color for the text
 - `SHELL_MOMMYS_ALIASES` - provide path to your aliases file for mommy to source
 - `SHELL_MOMMYS_AFFIRMATIONS` - provide a path to a valid `.json` file, formatted exactly like [assets/affirmations.json](https://github.com/sleepymincy/mommy/blob/master/assets/affirmations.json), otherwise the code will fall back to built-in default affirmations
-- `SHELL_MOMMYS_NEEDY` - can be `1`, or `0` (default), decides if mommy is running at all times or only when u call her
+- `SHELL_MOMMYS_NEEDY` - can be `1`, or `0` (default), decides if mommy is accepting exit code as an argument, or a command
 - `SHELL_MOMMY_ONLY_NEGATIVE` - can be `1` or `0` (default), decides if mommy only talks when exit code is not 0
 
 You can either specify environment variables every time you run mommy:
