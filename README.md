@@ -21,7 +21,8 @@ After using Bash  implementation for a bit, I've decided to try writing my own i
 - Compiled binary will be in `./target/release/`
 
 ## Easy install:
-... TODO: fuck really hard with crates.io~ <3
+- Get [Rust](https://rustup.rs/)
+- `cargo install shell-mommy`
 
 ## Configuration:
 Available environment variables: 

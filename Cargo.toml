@@ -1,11 +1,14 @@
 [package]
 name = "shell-mommy"
-version = "0.1.2"
+version = "0.1.2a"
 authors = ["Mincy Queen <sleepymincy@proton.me>"]
 edition = "2024"
 description = "Affirmations in your terminal!"
 license = "Unlicense license"
 repository = "https://github.com/sleepymincy/mommy"
+keywords = ["mommy", "silly", "shell", "cli"]
+categories = ["command-line-utilities"]
+readme = "README.md"
 
 [dependencies]
 fastrand = "2.3.0"
