@@ -1,5 +1,4 @@
 use std::env;
-use std::error::Error;
 use std::process::{Command, exit};
 use crate::config::load_config;
 use crate::utils::{fill_template, graceful_print};
@@ -13,7 +12,7 @@ fn choose_template<'a>( json_template: Option<&'a Vec<String>>, default_template
     templates[idx].as_str()
 }
 
-pub fn mommy() -> Result<(), Box<dyn Error>> {
+pub fn mommy() -> Result<i32, Box<dyn std::error::Error>> {
     let config = load_config();
     let affirmations: Option<Affirmations> = if let Some(ref path) = config.affirmations { load_custom_affirmations(path) } else { load_affirmations() };
     let default_positive: Vec<String> = vec![ "{roles} loves {pronouns} {little}~ {emotes}".to_string() ];
@@ -46,13 +45,13 @@ pub fn mommy() -> Result<(), Box<dyn Error>> {
     let (template, _affirmation_type) = match (exit_code == 0, config.only_negative) {
         (true, false) => ( choose_template(affirmations.as_ref().map(|aff| &aff.positive), &default_positive), "positive" ),
         (false, true) => ( choose_template(affirmations.as_ref().map(|aff| &aff.negative), &default_negative), "negative" ),
-        (false, false) => ( choose_template(affirmations.as_ref().map(|aff| &aff.negative), &default_negative), "negative" ), // Whoops forgot this
-        _ => return Ok(()),
+        (false, false) => ( choose_template(affirmations.as_ref().map(|aff| &aff.negative), &default_negative), "negative" ),
+        _ => return Ok(exit_code),
     };
 
     let output = fill_template(template, &config);
     let styled_output = random_style_pick(&config).paint(output);
     graceful_print(styled_output);
 
-    Ok(())
+    Ok(exit_code)
 }

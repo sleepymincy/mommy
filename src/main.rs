@@ -5,6 +5,13 @@ mod color;
 mod mommy;
 
 fn main() {
-    let exit_code = mommy::mommy().map(|_| 0).unwrap_or_else(|e| { eprintln!("Error: {:?}", e); 1 });
-    std::process::exit(exit_code);
+    // Changed the logic here to pass the exit code of the program
+    // as exit code of mommy itself, so the exit code preserved for debug purposes:
+    match mommy::mommy() {
+        Ok(code) => std::process::exit(code),
+        Err(e)   => {
+            eprintln!("Error: {:?}", e);
+            std::process::exit(1);
+        }
+    }
 }
