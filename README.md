@@ -58,7 +58,7 @@ export SHELL_MOMMYS_STYLE="bold,italic/bold" # Will be randomly rotated between 
 export SHELL_MOMMYS_COLOR_RGB="255,164,243/255,50,50" # Will be randomly rotated between lilac and red colors in this example. Note, that this setting will overwrite SHELL_MOMMYS_COLOR !!!
 export SHELL_MOMMYS_ALIASES="$HOME/.config/aliases"
 export SHELL_MOMMYS_AFFIRMATIONS="$HOME/.config/affirmations.json"
-export SHELL_MOMMYS_NEEDY=1 # Will make mommy run ALWAYS.
+export SHELL_MOMMYS_NEEDY=1 # Will make mommy take error code instead of a command, which can allow you to run mommy at all times
 export SHELL_MOMMY_ONLY_NEGATIVE=1 # Will make mommy only print affirmations if exit code is not 0
 ```
 
@@ -71,6 +71,14 @@ To make this behavior consistent, you can add these to your relevant rc files:
 ```bash
 # ~/.bashrc
 export PROMPT_COMMAND="mommy \$?; $PROMPT_COMMAND"
+```
+...or, a more safe option, if your shell gives you issues:
+```bash
+# ~/.bashrc
+# Double check that mommy is not already present in PROMPT_COMMAND, to avoid duplicate affirmations
+if [[ $(echo $PROMPT_COMMAND) != *"mommy"* ]]; then
+    export PROMPT_COMMAND="mommy \$?; $PROMPT_COMMAND"
+fi
 ```
 
 ```bash
